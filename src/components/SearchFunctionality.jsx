@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 const SearchFunctionality = () => {
     const [search, setSearch] = useState('')
@@ -46,19 +47,26 @@ const SearchFunctionality = () => {
 
     return(
         <div>
+            <Link to = "/login">login</Link>
             <input type = "search" name ="searchInput" onChange={e => handleInputChangeSearch(e)}/> <button onClick={e => handleSubmitSearch(e)}>Search</button>
-            <ul>
+            <table>
+                <thead>
+                <tr>
+                    {Object.keys(shopping[0]).map((key) =>  (
+                        <th key = {key}> {key.toUpperCase()}</th>
+                    ))}
+                </tr>
+                </thead>
             {shopping
                 .filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()))
                 .map((item, index) => (
-                    <li key={index}>
-                        <h3>Name: {item.name}</h3>
-                        <h5>Price: {item.price}</h5>
-                        <h5>Quantity: {item.quantity}</h5>
-                        <h5>Discount: {item.discount}%</h5><br/>
-                    </li>
+                    <tr key={index}>
+                        {Object.keys(item).map((key) => (
+                            <td key={key} style={{ verticalAlign: 'middle' }}>{item[key]}</td>
+                        ))}
+                    </tr>
                 ))}
-            </ul>
+            </table>
         </div>
     )
 }
