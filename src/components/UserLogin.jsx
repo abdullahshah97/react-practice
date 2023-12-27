@@ -1,4 +1,5 @@
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 const UserLogin = () =>{
     const[userDetails, setUserDetails] = useState({
@@ -25,7 +26,8 @@ const UserLogin = () =>{
 
     return(
         <div>
-                <form onSubmit ={e => handleSubmit(e)}>
+            <Link to = "/search">Search</Link>
+            <form onSubmit ={e => handleSubmit(e)}>
                     <input type = "email" onChange = {e => handleInputChange(e, "username")}>
                     </input>
                     <input type = "password" onChange ={e => handleInputChange(e, "password")}>
