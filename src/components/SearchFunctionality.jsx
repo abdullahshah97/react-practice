@@ -26,6 +26,12 @@ const SearchFunctionality = () => {
             quantity: 4,
             price: 5,
             discount: 20
+        },
+        {
+            name: 'Crunchy Bar',
+            quantity: 15,
+            price: 1.5,
+            discount: 1
         }
     ])
 
@@ -40,9 +46,11 @@ const SearchFunctionality = () => {
 
     return(
         <div>
-            <input type = "search" name ="searchInput" onChange={e => handleInputChangeSearch(e)}/>// <button onClick={e => handleSubmitSearch(e)}>Search</button>
+            <input type = "search" name ="searchInput" onChange={e => handleInputChangeSearch(e)}/> <button onClick={e => handleSubmitSearch(e)}>Search</button>
             <ul>
-            {shopping.map((item, index) => (
+            {shopping
+                .filter((item) => item.name.toLowerCase().startsWith(search.toLowerCase()))
+                .map((item, index) => (
                     <li key={index}>
                         <h3>Name: {item.name}</h3>
                         <h5>Price: {item.price}</h5>
